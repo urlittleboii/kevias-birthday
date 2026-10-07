@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>For Kevia, on October 8.</title>
+  <meta name="description" content="A small something, made with care." />
+  <meta name="theme-color" content="#000000" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='%235C0000'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%23B00000'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient background -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg-glow bg-glow-a"></div>
+    <div class="bg-glow bg-glow-b"></div>
+    <div class="vignette"></div>
+  </div>
+  <canvas id="motes" aria-hidden="true"></canvas>
+
+  <main id="app">
+
+    <!-- 1. OPENING -->
+    <section class="screen" id="screen-open" tabindex="-1" aria-label="Opening"></section>
+
+    <!-- 2. UNLOCK -->
+    <section class="screen" id="screen-unlock" tabindex="-1" aria-label="Unlock"></section>
+
+    <!-- 3. BIRTHDAY LETTER -->
+    <section class="screen" id="screen-letter" tabindex="-1" aria-label="Birthday letter"></section>
+
+    <!-- 4. APPRECIATION -->
+    <section class="screen" id="screen-appreciation" tabindex="-1" aria-label="Things I still appreciate about you"></section>
+
+    <!-- 5. TIMELINE -->
+    <section class="screen" id="screen-timeline" tabindex="-1" aria-label="Our little timeline"></section>
+
+    <!-- 6. GIFTS -->
+    <section class="screen" id="screen-gifts" tabindex="-1" aria-label="A few things for you"></section>
+
+    <!-- 7. BIRTHDAY CAKE -->
+    <section class="screen" id="screen-cake" tabindex="-1" aria-label="Make a wish">
+      <div class="wrap">
+        <header class="sec-head" data-reveal>
+          <h2 class="serif h1" id="cakeHeading"></h2>
+        </header>
+
+        <div class="cake-scene" id="cakeScene" aria-hidden="true">
+          <div class="cake-glow"></div>
+          <div class="cake">
+            <div class="candles">
+              <div class="candle c1"><span class="flame"></span><span class="smoke"></span></div>
+              <div class="candle c2"><span class="flame"></span><span class="smoke"></span></div>
+              <div class="candle c3"><span class="flame"></span><span class="smoke"></span></div>
+            </div>
+            <div class="tier tier-top"></div>
+            <div class="tier tier-bottom"></div>
+            <div class="plate"></div>
+          </div>
+        </div>
+
+        <div class="cake-msgs" id="cakeMsgs" aria-live="polite"></div>
+
+        <div class="actions center">
+          <button class="btn" id="wishBtn"></button>
+          <button class="btn gone" id="cakeNext"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FINAL MESSAGE -->
+    <section class="screen" id="screen-final" tabindex="-1" aria-label="Final message"></section>
+
+  </main>
+
+  <!-- Confetti (wish only) -->
+  <div class="confetti-layer" id="confetti" aria-hidden="true"></div>
+
+  <!-- Music player -->
+  <div class="player" id="player" hidden>
+    <input type="range" id="seek" min="0" max="1000" step="1" value="0" aria-label="Seek in the song" />
+    <div class="player-row">
+      <button class="play-btn" id="playBtn" aria-label="Play music">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+          <path class="ic-play" d="M8.5 5.5v13l10-6.5z" />
+          <g class="ic-pause">
+            <rect x="6.5" y="5.5" width="3.6" height="13" rx="1.1" />
+            <rect x="13.9" y="5.5" width="3.6" height="13" rx="1.1" />
+          </g>
+        </svg>
+      </button>
+      <div class="player-meta">
+        <span class="player-title" id="playerTitle">for you, Kevia</span>
+        <span class="player-time"><span id="tCur">0:00</span><span class="tsep">/</span><span id="tDur">&ndash;:&#8211;&#8211;</span></span>
+      </div>
+    </div>
+  </div>
+
+  <audio id="song" preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
